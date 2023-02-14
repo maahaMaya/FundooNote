@@ -1,0 +1,93 @@
+body{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 135px;
+    font-family: sans-serif;
+}
+
+.FormBody{
+    width: 30vw;
+    height: 68vh;
+    border: 2px solid #eff0f2;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    align-content: center;
+    align-items: center;
+}
+
+.Text{
+    text-align: center;
+}
+.Text1{
+    font-weight: bolder;
+    margin-top: 30px;
+    font-size: 20px;
+}
+.Text2{
+    font-weight: 300px;
+    margin-top: 20px;
+    font-size: 23px;
+}
+.Text3{
+    font-weight: lighter;
+    margin-top: 12px;
+    font-size: 15px;
+}
+
+.InputBox{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 36px;
+}
+.Input{
+    width: 368.5px;
+    height: 56px;
+    border-radius: 5px;
+    border: 2px solid #d9dadc;
+}
+.ForgotEmail{
+    font-weight: bold;
+    color: #5a9aef;
+    font-size: 14px;
+    margin-right: 250px;
+    margin-top: 10px;
+}
+.TextInfo{
+    width: 368.5px;
+    height: 56px;
+    font-size: 13px;
+    margin-top: 18px;
+}
+.TextInfo2{
+    font-weight: lighter;
+}
+.TextInfo2{
+    font-weight: bold;
+    color: #5a9aef;
+}
+.CreateAccountLogin{
+    display: flex;
+    gap: 180px;
+}
+.LoginButton{
+    width: 85px;
+    height: 35px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #1a92e8f1;
+    border-radius: 5px;
+    color: #ffffff;
+    border: none ;
+}
+.CreateAccountLink{
+    color: #2d78da;
+    text-align: center;
+    border-radius: 5px;
+
+}
