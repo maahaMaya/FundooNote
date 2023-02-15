@@ -1,4 +1,4 @@
-import './Register.css';
+import './SignIn.css';
 function RegisterNewUser() {
     return (
         <>

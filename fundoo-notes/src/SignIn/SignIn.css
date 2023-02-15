@@ -47,7 +47,7 @@ body{
 }
 .Input{
     width: 368.5px;
-    height: 56px;
+    height: 48px;
     border-radius: 5px;
     border: 2px solid #d9dadc;
 }
@@ -89,5 +89,4 @@ body{
     color: #2d78da;
     text-align: center;
     border-radius: 5px;
-
 }
