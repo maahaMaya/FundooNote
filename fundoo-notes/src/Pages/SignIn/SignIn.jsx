@@ -1,32 +1,35 @@
 import './SignIn.css';
 function UserSignIn() {
     return (
-        <div className='SignInForm'>
-            <form className="FormBody">
-                <div className="Text Text1">Fundoo</div>
-                <div className="Text Text2">Sign In</div>
-                <div className="Text Text3">Use your Google Account</div>
-                <div className="InputBox">
-                    <div >
-                        <input className="InputEmail Input" placeholder="Email or Phone" />
+        <div className='MainDiv'>
+            <div className='SignInForm'>
+                <form className="FormBody">
+                    <div className="Text Text1">Fundoo</div>
+                    <div className="Text Text2">Sign In</div>
+                    <div className="Text Text3">Use your Google Account</div>
+                    <div className="InputBox">
+                        <div >
+                            <input className="InputEmail Input" placeholder="Email or Phone" />
+                        </div>
+                        <div >
+                            <input className="InputPassword Input" placeholder="Password" />
+                        </div>
                     </div>
-                    <div >
-                        <input className="InputPassword Input" placeholder="Password" />
+                    <div className='ForgotEmail'>
+                        <div>Forgot Password?</div>
                     </div>
-                </div>
-                <div className='ForgotEmail'>
-                    <div>Forgot Password?</div>
-                </div>
-                <div className="TextInfo">
-                    <div>Not your computer? Use Guest mode to sign in privately.</div>
-                    <div className="TextInfo2">Learn more.</div>
-                </div>
-                <div className="CreateAccountLogin">
-                    <a className="CreateAccountLink">Create Account</a>
-                    <button className="LoginButton">Next</button>
-                </div>
-            </form>
+                    <div className="TextInfo">
+                        <div>Not your computer? Use Guest mode to sign in privately.</div>
+                        <div className="TextInfo2">Learn more.</div>
+                    </div>
+                    <div className="CreateAccountLogin">
+                        <a className="CreateAccountLink">Create Account</a>
+                        <button className="LoginButton">Next</button>
+                    </div>
+                </form>
+            </div>
         </div>
+
     )
 }
 export default UserSignIn;
