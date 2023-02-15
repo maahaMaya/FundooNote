@@ -1,9 +1,9 @@
 import './SignIn.css';
-function RegisterNewUser() {
+function UserSignIn() {
     return (
-        <>
+        <div className='SignInForm'>
             <form className="FormBody">
-                <div className="Text Text1">Google</div>
+                <div className="Text Text1">Fundoo</div>
                 <div className="Text Text2">Sign In</div>
                 <div className="Text Text3">Use your Google Account</div>
                 <div className="InputBox">
@@ -26,7 +26,7 @@ function RegisterNewUser() {
                     <button className="LoginButton">Next</button>
                 </div>
             </form>
-        </>
+        </div>
     )
 }
-export default RegisterNewUser;
+export default UserSignIn;
