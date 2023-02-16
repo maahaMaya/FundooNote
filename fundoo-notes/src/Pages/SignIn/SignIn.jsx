@@ -1,4 +1,7 @@
 import './SignIn.css';
+import * as React from 'react';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 function UserSignIn() {
     return (
         <div className='MainDiv'>
@@ -9,13 +12,15 @@ function UserSignIn() {
                     <div className="Text Text3">Use your Google Account</div>
                     <div className="InputBox">
                         <div >
-                            <input className="InputEmail Input" placeholder="Email or Phone" />
+                            {/* <input className="InputEmail Input" placeholder="Email or Phone" /> */}
+                            <TextField id="outlined-basic" className="InputEmail Input" label="Email or Phone" variant="outlined"/>
                         </div>
                         <div >
-                            <input className="InputPassword Input" placeholder="Password" />
+                            {/* <input className="InputPassword Input" placeholder="Password" /> */}
+                            <TextField id="outlined-basic" className="InputPassword Input" label="Password" variant="outlined" />
                         </div>
                     </div>
-                    <div className='ForgotEmail'>
+                    <div className='ForgotPasswordText'>
                         <div>Forgot Password?</div>
                     </div>
                     <div className="TextInfo">
@@ -24,7 +29,8 @@ function UserSignIn() {
                     </div>
                     <div className="CreateAccountLogin">
                         <a className="CreateAccountLink">Create Account</a>
-                        <button className="LoginButton">Next</button>
+                        {/* <button className="LoginButton">Next</button> */}
+                        <Button className='LoginButton' variant="contained">Next</Button>
                     </div>
                 </form>
             </div>

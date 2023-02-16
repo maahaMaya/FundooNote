@@ -43,48 +43,42 @@
     margin-top: 32px;
     display: flex;
     justify-content:flex-start;
-    gap: 10px;
+    gap: 15px;
 }
 .InputName{
     width: 160px;
-    height: 32px;
-    border-radius: 3px;
-    border: 2px solid #eff0f2;
+    height: 30px;
 }
 
 .EmailContainer{
-    margin-top: 29px;
+    margin-top: 24px;
     display: flex;
     flex-direction: column;
 }
 .InputGmail{
     width: 338px;
-    height: 32px;
-    border: 2px solid #eff0f2;
-    border-radius: 3px;
+    height: 30px;
 }
 .EmailBelowText{
-    padding-top: 5px;
+    padding-top: 14px;
     padding-left: 7px;
     font-size: 11px;
     color:  rgb(103, 99, 99);
 }
 
 .PasswordContainer{
-    margin-top: 26px;
+    margin-top: 16px;
     display: flex;
     justify-content:flex-start;
-    gap: 10px;
+    gap: 15px;
 }
 .InputPassword{
     width: 160px;
     height: 32px;
-    border-radius: 3px;
-    border: 2px solid #eff0f2;
 }
 
 .TextBelowPassword{
-    margin-top: 4px;
+    margin-top: 15px;
     margin-left: 7px;
     width: 285px;
     font-size: 11px;
@@ -93,10 +87,11 @@
 
 .CheckBoxContainer{
     margin-top: 10px;
-    margin-bottom: 60px;
     font-size: 14px;
     font-weight:lighter;
     display: flex;
+    flex-direction: row;
+    justify-content: baseline;
     gap: 10px;
 }
 
@@ -105,6 +100,7 @@
     flex-direction: row;
     justify-content: baseline;
     align-items: baseline;
+    margin-top: 36px;
     gap: 160px;
 }
 .LoginLink{

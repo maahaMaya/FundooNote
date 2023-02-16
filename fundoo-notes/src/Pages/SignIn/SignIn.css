@@ -50,7 +50,7 @@
     flex-direction: column;
     align-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 32px;
     margin-top: 36px;
 }
 .Input{
@@ -59,12 +59,12 @@
     border-radius: 5px;
     border: 2px solid #d9dadc;
 }
-.ForgotEmail{
+.ForgotPasswordText{
     font-weight: bold;
     color: #5a9aef;
     font-size: 14px;
     margin-right: 250px;
-    margin-top: 10px;
+    margin-top: 18px;
 }
 .TextInfo{
     width: 368.5px;
@@ -79,22 +79,17 @@
     font-weight: bold;
     color: #5a9aef;
 }
+
 .CreateAccountLogin{
     display: flex;
     gap: 180px;
-}
-.LoginButton{
-    width: 85px;
-    height: 35px;
-    font-size: 14px;
-    font-weight: bold;
-    background-color: rgba(26,115,232,255);
-    border-radius: 5px;
-    color: #ffffff;
-    border: none ;
 }
 .CreateAccountLink{
     color: #2d78da;
     text-align: center;
     border-radius: 5px;
+}
+.LoginButton{
+    width: 85px;
+    height: 35px;
 }
