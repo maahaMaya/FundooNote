@@ -1,8 +1,41 @@
 import './SignIn.css';
-import * as React from 'react';
+import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+
+const nameRegex = /^([A-Z]{1}[a-z,A-Z]{2,})$/;
+const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
+const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$/;
+
 function UserSignIn() {
+    const [UserDetails, setUserDetails] = useState({email:'', password:''});
+    const [regexDetails, setRegexDetails] = useState({emailError:false, emailHelperText:'', passwordError:false, passwordHelperText:''});
+
+    const InputUserEmail = (e) => {
+        //setUserDetails({email:e.target.value});
+        setUserDetails(preState => ({...preState, email:e.target.value}));
+    }
+    
+    const InputUserPassword = (e) => {
+            setUserDetails(preState => ({...preState, password:e.target.value}));
+    }
+
+    const LoginButtonClick = () => {
+
+        if(emailRegex.test(UserDetails.email) === false){
+            setRegexDetails(preState => ({...preState, emailError:true, emailHelperText:"this is wrong email"}));
+        }
+        else if(emailRegex.test(UserDetails.email) === true){
+            setRegexDetails(preState => ({...preState, emailError:false, emailHelperText:""}));
+        }
+
+        if(passwordRegex.test(UserDetails.password) === false){
+            setRegexDetails(preState => ({...preState, passwordError:true, passwordHelperText:"this is wrong password"}));
+        }
+        else if(passwordRegex.test(UserDetails.password) === true){
+            setRegexDetails(preState => ({...preState, passwordError:false, passwordHelperText:""}));
+        }
+    }
     return (
         <div className='MainDiv'>
             <div className='SignInForm'>
@@ -13,11 +46,27 @@ function UserSignIn() {
                     <div className="InputBox">
                         <div >
                             {/* <input className="InputEmail Input" placeholder="Email or Phone" /> */}
-                            <TextField id="outlined-basic" className="InputEmail Input" label="Email or Phone" variant="outlined"/>
+                            <TextField
+                                id="outlined-basic"
+                                className="InputEmail Input"
+                                label="Email or Phone"
+                                variant="outlined"
+                                onChange={InputUserEmail}
+                                error={regexDetails.emailError}
+                                helperText={regexDetails.emailHelperText}
+                            />
                         </div>
                         <div >
                             {/* <input className="InputPassword Input" placeholder="Password" /> */}
-                            <TextField id="outlined-basic" className="InputPassword Input" label="Password" variant="outlined" />
+                            <TextField
+                                id="outlined-basic"
+                                className="InputPassword Input"
+                                label="Password"
+                                variant="outlined"
+                                onChange={InputUserPassword}
+                                error={regexDetails.passwordError}
+                                helperText={regexDetails.passwordHelperText}
+                            />
                         </div>
                     </div>
                     <div className='ForgotPasswordText'>
@@ -30,7 +79,11 @@ function UserSignIn() {
                     <div className="CreateAccountLogin">
                         <a className="CreateAccountLink">Create Account</a>
                         {/* <button className="LoginButton">Next</button> */}
-                        <Button className='LoginButton' variant="contained">Next</Button>
+                        <Button
+                            className='LoginButton'
+                            variant="contained"
+                            onClick={LoginButtonClick}
+                        >Next</Button>
                     </div>
                 </form>
             </div>

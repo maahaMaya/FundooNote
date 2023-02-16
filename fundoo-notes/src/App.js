@@ -6,7 +6,6 @@ import UserSignIn from './Pages/SignIn/SignIn'
 function App() {
   return (
     <>
-     <RegisterNewUser/> 
      <UserSignIn/>
     </>
   );

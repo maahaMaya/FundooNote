@@ -50,21 +50,20 @@
     flex-direction: column;
     align-content: center;
     align-items: center;
-    gap: 32px;
+    gap: 35px;
     margin-top: 36px;
 }
 .Input{
     width: 368.5px;
     height: 48px;
     border-radius: 5px;
-    border: 2px solid #d9dadc;
 }
 .ForgotPasswordText{
     font-weight: bold;
     color: #5a9aef;
     font-size: 14px;
     margin-right: 250px;
-    margin-top: 18px;
+    margin-top: 22px;
 }
 .TextInfo{
     width: 368.5px;
