@@ -17,6 +17,7 @@ function RegisterNewUser() {
 
     const [UserRegister, setUserRegister] = useState({ firstName: '', lastName: '', email: '', password: '', confirmPassword: '' });
     const [RegexRegister, setRegexRegister] = useState({ firstNameError: false, firstNameHelperText: '', lastNameError: false, lastNameHelperText: '', emailError: false, emailHelperText: '', passwordError: false, passwordHelperText: '', confirmPasswordError: false, confirmPasswordHelperText: '', passwordMatchError: false });
+    const [PasswordShow, setPasswordShow] = useState({passwordVisible:'password'});
 
     const InputFirstName = (e) => {
         setUserRegister(preState => ({ ...preState, firstName: e.target.value }))
@@ -71,20 +72,30 @@ function RegisterNewUser() {
         }
 
         if (UserRegister.password === UserRegister.confirmPassword) {
-            setRegexRegister(preState => ({ ...preState, passwordMatchError: false, passwordMatchHelperText: "" }))
+            console.log("password match");
+            setRegexRegister(preState => ({ ...preState, passwordMatchError: false }))
         }
         else {
-            console.log("password");
+            console.log("password not");
             setRegexRegister(preState => ({ ...preState, passwordMatchError: true }))
         }
 
         if (RegexRegister.passwordError === true) {
             setRegexRegister(preState => ({ ...preState, passwordError: true, passwordHelperText: "EnterSamePassword", confirmPasswordError: true, confirmPasswordHelperText: "EnterSamePassword" }))
         }
+        
     }
 
     const ShowPasswordButton = (e) => {
-        console.log("---", e.target.value)
+        //console.log("---", e.target.checked)password
+        if((e.target.checked)===true){
+            console.log("T");
+            setPasswordShow({passwordVisible:'text'});
+        }
+        else{
+            console.log("N");
+            setPasswordShow({passwordVisible:'password'});
+        }
     }
 
     return (
@@ -135,7 +146,7 @@ function RegisterNewUser() {
                             className='InputPassword'
                             label="Password"
                             variant="outlined"
-                            type="password"
+                            type={PasswordShow.passwordVisible}
                             size='small' />
                         <TextField
                             id="outlined-basic"
@@ -145,7 +156,7 @@ function RegisterNewUser() {
                             className='InputPassword'
                             label="Confirm"
                             variant="outlined"
-                            type="text"
+                            type={PasswordShow.passwordVisible}
                             size='small' />
                     </div>
                     <div className='TextBelowPassword'>
@@ -153,14 +164,8 @@ function RegisterNewUser() {
                     </div>
                     <div className='CheckBoxContainer'>
                         <FormGroup>
-                            <FormControlLabel control={<Checkbox defaultChecked />} label="Show Password" />
+                            <FormControlLabel control={<Checkbox   onChange={ShowPasswordButton}/>} label="Show Password" />
                         </FormGroup>
-                        {/* <FormGroup>
-                            <FormControlLabel
-                                control={<Checkbox />}
-                                onChange={ShowPasswordButton}
-                                label="Show Password" />
-                        </FormGroup> */}
                     </div>
                     <div className="CreateAccount">
                         <a className="LoginLink">Sign in instead</a>

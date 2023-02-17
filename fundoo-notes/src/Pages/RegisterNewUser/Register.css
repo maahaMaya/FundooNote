@@ -83,6 +83,7 @@
     width: 285px;
     font-size: 11px;
     color: rgb(103, 99, 99);
+    display: none;
 }
 
 .CheckBoxContainer{
