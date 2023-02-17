@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-const nameRegex = /^([A-Z]{1}[a-z,A-Z]{2,})$/;
 const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$/;
 
@@ -45,7 +44,6 @@ function UserSignIn() {
                     <div className="Text Text3">Use your Google Account</div>
                     <div className="InputBox">
                         <div >
-                            {/* <input className="InputEmail Input" placeholder="Email or Phone" /> */}
                             <TextField
                                 id="outlined-basic"
                                 className="InputEmail Input"
@@ -57,7 +55,6 @@ function UserSignIn() {
                             />
                         </div>
                         <div >
-                            {/* <input className="InputPassword Input" placeholder="Password" /> */}
                             <TextField
                                 id="outlined-basic"
                                 className="InputPassword Input"
@@ -78,7 +75,6 @@ function UserSignIn() {
                     </div>
                     <div className="CreateAccountLogin">
                         <a className="CreateAccountLink">Create Account</a>
-                        {/* <button className="LoginButton">Next</button> */}
                         <Button
                             className='LoginButton'
                             variant="contained"
