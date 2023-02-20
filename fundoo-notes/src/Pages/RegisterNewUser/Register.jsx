@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { RegisterNewUserApi } from '../../Services/User';
 
 const nameRegex = /^([A-Z]{1}[a-z,A-Z]{2,})$/;
 const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
@@ -71,23 +72,33 @@ function RegisterNewUser() {
             setRegexRegister(preState => ({ ...preState, confirmPasswordError: false, confirmPasswordHelperText: "" }))
         }
 
-        if (UserRegister.password === UserRegister.confirmPassword) {
-            console.log("password match");
-            setRegexRegister(preState => ({ ...preState, passwordMatchError: false }))
-        }
-        else {
-            console.log("password not");
-            setRegexRegister(preState => ({ ...preState, passwordMatchError: true }))
-        }
+        // if (UserRegister.password === UserRegister.confirmPassword) {
+        //     console.log("password match");
+        //     setRegexRegister(preState => ({ ...preState, passwordMatchError: false }))
+        // }
+        // else {
+        //     console.log("password not");
+        //     setRegexRegister(preState => ({ ...preState, passwordMatchError: true }))
+        // }
 
-        if (RegexRegister.passwordError === true) {
-            setRegexRegister(preState => ({ ...preState, passwordError: true, passwordHelperText: "EnterSamePassword", confirmPasswordError: true, confirmPasswordHelperText: "EnterSamePassword" }))
+        // if (RegexRegister.passwordError === true) {
+        //     setRegexRegister(preState => ({ ...preState, passwordError: true, passwordHelperText: "EnterSamePassword", confirmPasswordError: true, confirmPasswordHelperText: "EnterSamePassword" }))
+        // }
+
+        if(RegexRegister.firstNameError === false && RegexRegister.lastNameError === false && RegexRegister.emailError === false && RegexRegister.passwordError === false && RegexRegister.confirmPasswordError === false && RegexRegister.passwordMatchError === false){
+            RegisterNewUserApi(UserRegister)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
         }
         
     }
 
     const ShowPasswordButton = (e) => {
-        //console.log("---", e.target.checked)password
+        //console.log("---", e.target.checked)
         if((e.target.checked)===true){
             console.log("T");
             setPasswordShow({passwordVisible:'text'});

@@ -40,7 +40,7 @@
 }
 
 .NameContainer{
-    margin-top: 32px;
+    margin-top: 28px;
     display: flex;
     justify-content:flex-start;
     gap: 15px;
@@ -51,7 +51,7 @@
 }
 
 .EmailContainer{
-    margin-top: 24px;
+    margin-top: 32px;
     display: flex;
     flex-direction: column;
 }
@@ -60,14 +60,14 @@
     height: 30px;
 }
 .EmailBelowText{
-    padding-top: 14px;
+    padding-top: 28px;
     padding-left: 7px;
     font-size: 11px;
     color:  rgb(103, 99, 99);
 }
 
 .PasswordContainer{
-    margin-top: 16px;
+    margin-top: 20px;
     display: flex;
     justify-content:flex-start;
     gap: 15px;
@@ -78,7 +78,7 @@
 }
 
 .TextBelowPassword{
-    margin-top: 15px;
+    margin-top: 24px;
     margin-left: 7px;
     width: 285px;
     font-size: 11px;
@@ -87,7 +87,7 @@
 }
 
 .CheckBoxContainer{
-    margin-top: 10px;
+    margin-top: 18px;
     font-size: 14px;
     font-weight:lighter;
     display: flex;

@@ -1,0 +1,7 @@
+.inputBoxMainDiv{
+    width: 35vw;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+    border: 1px solid rgb(142, 129, 129);
+}
