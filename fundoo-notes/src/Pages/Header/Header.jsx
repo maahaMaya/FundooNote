@@ -16,7 +16,7 @@ import InputBase from '@mui/material/InputBase';
 import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 
-export default function ButtonAppBar() {
+export default function ApplicationBar() {
     const iconButtonStyles = {
         color: "yellow",
     };

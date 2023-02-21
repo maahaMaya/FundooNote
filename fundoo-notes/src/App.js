@@ -1,24 +1,14 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import RegisterNewUser from './Pages/RegisterNewUser/Register';
-import UserSignIn from './Pages/SignIn/SignIn'
-import ResponsiveAppBar from './Pages/Header/Header'
-import NoteBookConatiner from './Pages/NoteBox/NoteBox'
-import InputCardBox from './Pages/InputCardBox/InputCardBox'
-import InputBox from './Pages/InputBox/InputBox';
+import Dashboard from './Pages/DashBord/Dashboard';
+
 
 function App() {
   return (
     <>
-     {/* <UserSignIn/> */}
-      {/* <RegisterNewUser/> */}
-     <ResponsiveAppBar/>
-     <NoteBookConatiner/> 
-     <InputCardBox/>
-     <InputBox/>
-     
+      <Dashboard/>
     </>
-  );
+  )
 }
 
 export default App;

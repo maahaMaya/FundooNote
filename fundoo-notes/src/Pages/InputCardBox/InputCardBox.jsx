@@ -69,7 +69,7 @@ export default function InputCardBox() {
                     </IconButton>
                 </div>
                 <div>
-                    <Button color="secondary">Close</Button>
+                    <Button color="secondary" sx={{ textTransform: 'none'}}>Close</Button>
                 </div>
             </CardActions>
         </Card>
