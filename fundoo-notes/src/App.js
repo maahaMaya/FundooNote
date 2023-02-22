@@ -8,7 +8,7 @@ import UserSignIn from './Pages/SignIn/SignIn';
 function App() {
   return (
     <>
-      <UserSignIn/>
+      <Dashboard/>
     </>
   )
 }
