@@ -4,12 +4,20 @@ import InputBox from "../InputBox/InputBox";
 import InputCardBox from "../InputCardBox/InputCardBox";
 
 function Dashboard() {
-    const [toggle] = useState(true);
+    const [toggle, setToggle] = useState(true);
+
+    const listenToInputBox = () => {
+        setToggle(false)
+    }
+    const listenToInputCardBox = () => {
+        setToggle(true)
+    }
+
     return(
         <>
             <ApplicationBar/>
             {
-                toggle ? <InputBox/> : <InputCardBox/>
+                toggle ? <InputBox listenToInputBox={listenToInputBox}/> : <InputCardBox listenToInputCardBox={listenToInputCardBox}/>
             }
         </>
     )

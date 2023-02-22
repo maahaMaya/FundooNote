@@ -1,17 +1,13 @@
 import * as React from 'react';
 import './InputCardBox.css';
-import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
-
 import InputBase from '@mui/material/InputBase';
-
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import PaletteOutlinedIcon from '@mui/icons-material/PaletteOutlined';
@@ -22,7 +18,10 @@ import Button from '@mui/material/Button';
 import UndoIcon from '@mui/icons-material/Undo';
 import RedoIcon from '@mui/icons-material/Redo';
 
-export default function InputCardBox() {
+export default function InputCardBox(props) {
+    const OnClickInputCardBoxClose = () => {
+        props.listenToInputCardBox()
+    }
     return (
         <Card sx={{ maxWidth: 600 }}>
             <CardHeader
@@ -46,8 +45,8 @@ export default function InputCardBox() {
                     <IconButton aria-label="remindMe" >
                         <NotificationsActiveOutlinedIcon fontSize="small" />
                     </IconButton>
-                    <IconButton  aria-label="collaborator">
-                        <PersonAddAltOutlinedIcon   fontSize="small" />
+                    <IconButton aria-label="collaborator">
+                        <PersonAddAltOutlinedIcon fontSize="small" />
                     </IconButton>
                     <IconButton aria-label="colorAddBg">
                         <PaletteOutlinedIcon fontSize="small" />
@@ -69,7 +68,7 @@ export default function InputCardBox() {
                     </IconButton>
                 </div>
                 <div>
-                    <Button color="secondary" sx={{ textTransform: 'none'}}>Close</Button>
+                    <Button onClick={OnClickInputCardBoxClose} color="secondary" sx={{ textTransform: 'none' }}>Close</Button>
                 </div>
             </CardActions>
         </Card>
