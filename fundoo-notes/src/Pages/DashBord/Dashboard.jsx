@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { AllNoteRetriveApi } from "../../Services/DataService";
+import './Dashboard.css'
 import ApplicationBar from "../Header/Header";
 import InputBox from "../InputBox/InputBox";
 import InputCardBox from "../InputCardBox/InputCardBox";
 import NoteBook from "../NoteBox/NoteBox";
+import { AllNoteRetriveApi } from "../../Services/NoteService";
 
 function Dashboard() {
     const [toggle, setToggle] = useState(true);
@@ -29,12 +30,15 @@ function Dashboard() {
     return (
         <>
             <ApplicationBar />
-            {
-                toggle ? <InputBox listenToInputBox={listenToInputBox} /> : <InputCardBox listenToInputCardBox={listenToInputCardBox} />
-            }
+            <div className="SwitchInputBox">
+                {
+                    toggle ? <InputBox listenToInputBox={listenToInputBox} /> : <InputCardBox listenToInputCardBox={listenToInputCardBox} />
+                }
+            </div>
+
             <div style={{ width: '70%', height: '100%', border: '1px solid red', display: 'flex', flexWrap: 'wrap' }}>
                 {
-                    noteList.map(note => (<NoteBook/>))
+                    noteList.map(note => (<NoteBook note={note} />))
                 }
             </div>
         </>
