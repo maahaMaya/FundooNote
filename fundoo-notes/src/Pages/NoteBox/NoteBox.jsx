@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
@@ -13,15 +12,17 @@ import PaletteOutlinedIcon from '@mui/icons-material/PaletteOutlined';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
-import { NoteMoveToTrash } from '../../Services/NoteService';
+import { ArchieveNote } from '../../Services/NoteService';
 
 
 export default function NoteBook(props) {
 
-  const [noteID, setNoteId] = useState({j : props.note.noteID})
-  const NoteBookTrashIcon = () => {
-    console.log(noteID, "----------")
-    NoteMoveToTrash(noteID)
+  const NoteBookTrashIcon = (id) => {
+    console.log(id, "----------")
+    let nId = {
+      "noteID": id
+    }
+    ArchieveNote(nId)
       .then(res => {
         console.log(res)
       })
@@ -39,10 +40,8 @@ export default function NoteBook(props) {
         }
         title={props.note.title}
       />
-      <CardMedia
-      />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" multiline>
           {props.note.note}
         </Typography>
       </CardContent>
@@ -59,7 +58,7 @@ export default function NoteBook(props) {
         <IconButton aria-label="imageAddBg">
           <InsertPhotoOutlinedIcon fontSize="small" />
         </IconButton>
-        <IconButton onClick={NoteBookTrashIcon} aria-label="archive">
+        <IconButton onClick={() => NoteBookTrashIcon(props.note.noteID)} aria-label="archive">
           <ArchiveOutlinedIcon fontSize="small" />
         </IconButton>
         <IconButton aria-label="more">

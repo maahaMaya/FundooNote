@@ -11,7 +11,7 @@ export const CreateNewNoteApi = (data) => {
     return response;
 }
 
-export const NoteMoveToTrash = (data) => {
-    let response = axios.put("https://localhost:44386/api/Note/MoveToTrash", data, HeaderConfig)
+export const ArchieveNote = (data) => {
+    let response = axios.put("https://localhost:44386/api/Note/Archieve", data, HeaderConfig)
     return response;
 }
