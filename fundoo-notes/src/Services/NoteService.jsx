@@ -1,17 +1,33 @@
 import axios from "axios";
 import { HeaderConfig } from "./DataService"
 
+const noteApi = "https://localhost:44386/api/Note"
+
 export const AllNoteRetriveApi = () => {
-    let response = axios.get("https://localhost:44386/api/Note/RetrieveAll", HeaderConfig)
+    let response = axios.get(`${noteApi}/RetrieveAll`, HeaderConfig)
+    return response
+}
+
+export const AllNoteRetriveWithoutArchivedeApi = () => {
+    let response = axios.get(`${noteApi}/RetrieveAllNotesWithoutArchieve`, HeaderConfig)
+    return response
+}
+export const AllNoteRetriveWithArchivedeApi = () => {
+    let response = axios.get(`${noteApi}/RetrieveAllNotesWithArchieve`, HeaderConfig)
     return response
 }
 
 export const CreateNewNoteApi = (data) => {
-    let response = axios.post("https://localhost:44386/api/Note/CreateNewNote", data, HeaderConfig)
+    let response = axios.post(`${noteApi}/CreateNewNote`, data, HeaderConfig)
     return response;
 }
 
-export const ArchieveNote = (data) => {
-    let response = axios.put("https://localhost:44386/api/Note/Archieve", data, HeaderConfig)
+export const ArchieveNoteApi = (data) => {
+    let response = axios.put(`${noteApi}/Archieve`, data, HeaderConfig)
+    return response;
+}
+
+export const TrashNoteApi = (data) => {
+    let response = axios.put(`${noteApi}/MoveToTrash`, data, HeaderConfig)
     return response;
 }

@@ -9,20 +9,32 @@ import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import PaletteOutlinedIcon from '@mui/icons-material/PaletteOutlined';
-import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
-import { ArchieveNote } from '../../Services/NoteService';
+import { ArchieveNoteApi, TrashNoteApi } from '../../Services/NoteService';
 
 
 export default function NoteBook(props) {
 
-  const NoteBookTrashIcon = (id) => {
-    console.log(id, "----------")
+  const NoteBookArchiveOutlinedIconClick = (id) => {
     let nId = {
       "noteID": id
     }
-    ArchieveNote(nId)
+    ArchieveNoteApi(nId)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  const NoteBookDeleteOutlinedIconClick = (id) => {
+    let nId = {
+      "noteID": id
+    }
+    TrashNoteApi(nId)
       .then(res => {
         console.log(res)
       })
@@ -55,10 +67,10 @@ export default function NoteBook(props) {
         <IconButton aria-label="colorAddBg">
           <PaletteOutlinedIcon fontSize="small" />
         </IconButton>
-        <IconButton aria-label="imageAddBg">
-          <InsertPhotoOutlinedIcon fontSize="small" />
+        <IconButton onClick={() => NoteBookDeleteOutlinedIconClick(props.note.noteID)} aria-label="imageAddBg">
+          <DeleteOutlinedIcon fontSize="small" />
         </IconButton>
-        <IconButton onClick={() => NoteBookTrashIcon(props.note.noteID)} aria-label="archive">
+        <IconButton onClick={() => NoteBookArchiveOutlinedIconClick(props.note.noteID)} aria-label="archive">
           <ArchiveOutlinedIcon fontSize="small" />
         </IconButton>
         <IconButton aria-label="more">

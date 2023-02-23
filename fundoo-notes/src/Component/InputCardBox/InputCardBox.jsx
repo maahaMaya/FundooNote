@@ -19,7 +19,7 @@ import RedoIcon from '@mui/icons-material/Redo';
 import { CreateNewNoteApi } from '../../Services/NoteService';
 
 export default function InputCardBox(props) {
-    const [noteData, setNoteData] = useState({ title: '', note: '' });
+    const [noteData, setNoteData] = useState({ title: '', note: '' , isArchive: false, isPin: false});
 
     const OnClickInputCardBoxClose = () => {
         props.listenToInputCardBox()
@@ -42,6 +42,15 @@ export default function InputCardBox(props) {
     const InputCardBoxChangeNote = (e) => {
         setNoteData(preState => ({...preState, note : e.target.value }))
     }
+    const InputCardBoxArchiveOutlinedIconClick = () => {
+        setNoteData(preState => ({...preState, isArchive : true }))
+    }
+    const InputCardBoxPushPinOutlinedIconClick = () => {
+        setNoteData(preState => ({...preState, isPin : true }))
+    }
+    const Check = () => {
+        console.log(noteData)
+    }
     return (
         <Card sx={{ maxWidth: 600 }}>
             <CardHeader
@@ -49,7 +58,7 @@ export default function InputCardBox(props) {
                     <InputBase onChange={InputCardBoxChangetitle} id="outlined-basic" placeholder='Title' variant="outlined" multiline fullWidth="true" />
                 }
                 action={
-                    <IconButton aria-label="settings">
+                    <IconButton onClick={InputCardBoxPushPinOutlinedIconClick} aria-label="settings">
                         <PushPinOutlinedIcon fontSize="small" />
                     </IconButton>
                 }
@@ -72,13 +81,13 @@ export default function InputCardBox(props) {
                     <IconButton aria-label="imageAddBg">
                         <InsertPhotoOutlinedIcon fontSize="small" />
                     </IconButton>
-                    <IconButton aria-label="archive">
+                    <IconButton onClick={InputCardBoxArchiveOutlinedIconClick} aria-label="archive">
                         <ArchiveOutlinedIcon fontSize="small" />
                     </IconButton>
                     <IconButton aria-label="more">
                         <MoreVertOutlinedIcon fontSize="small" />
                     </IconButton>
-                    <IconButton aria-label="more">
+                    <IconButton onClick={Check} aria-label="more">
                         <UndoIcon fontSize="small" />
                     </IconButton>
                     <IconButton aria-label="more" >
