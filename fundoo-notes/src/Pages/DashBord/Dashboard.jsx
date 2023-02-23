@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import './Dashboard.css'
-import ApplicationBar from "../Header/Header";
-import InputBox from "../InputBox/InputBox";
-import InputCardBox from "../InputCardBox/InputCardBox";
+import ApplicationBar from "../../Component/Header/Header";
+import InputBox from "../../Component/InputBox/InputBox";
+import InputCardBox from "../../Component/InputCardBox/InputCardBox";
 import NoteBook from "../NoteBox/NoteBox";
 import { AllNoteRetriveApi } from "../../Services/NoteService";
 
