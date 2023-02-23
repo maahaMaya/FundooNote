@@ -3,48 +3,53 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { SignInApi } from '../../Services/User';
+import { useNavigate } from 'react-router-dom';
 
 const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$/;
 
 function UserSignIn() {
-    const [UserDetails, setUserDetails] = useState({email:'', password:''});
-    const [regexDetails, setRegexDetails] = useState({emailError:false, emailHelperText:'', passwordError:false, passwordHelperText:''});
+    const [UserDetails, setUserDetails] = useState({ email: '', password: '' });
+    const [regexDetails, setRegexDetails] = useState({ emailError: false, emailHelperText: '', passwordError: false, passwordHelperText: '' });
+
+    let navigate = useNavigate();
 
     const InputUserEmail = (e) => {
         //setUserDetails({email:e.target.value});
-        setUserDetails(preState => ({...preState, email:e.target.value}));
+        setUserDetails(preState => ({ ...preState, email: e.target.value }));
     }
-    
+
     const InputUserPassword = (e) => {
-            setUserDetails(preState => ({...preState, password:e.target.value}));
+        setUserDetails(preState => ({ ...preState, password: e.target.value }));
     }
 
     const LoginButtonClick = () => {
-
-        if(emailRegex.test(UserDetails.email) === false){
-            setRegexDetails(preState => ({...preState, emailError:true, emailHelperText:"this is wrong email"}));
+        let emailTest = emailRegex.test(UserDetails.email);
+        let passwordTest = passwordRegex.test(UserDetails.password);
+        if (emailTest === false) {
+            setRegexDetails(preState => ({ ...preState, emailError: true, emailHelperText: "this is wrong email" }));
         }
-        else if(emailRegex.test(UserDetails.email) === true){
-            setRegexDetails(preState => ({...preState, emailError:false, emailHelperText:""}));
-        }
-
-        if(passwordRegex.test(UserDetails.password) === false){
-            setRegexDetails(preState => ({...preState, passwordError:true, passwordHelperText:"this is wrong password"}));
-        }
-        else if(passwordRegex.test(UserDetails.password) === true){
-            setRegexDetails(preState => ({...preState, passwordError:false, passwordHelperText:""}));
+        else if (emailTest === true) {
+            setRegexDetails(preState => ({ ...preState, emailError: false, emailHelperText: "" }));
         }
 
-        if(regexDetails.emailError === false && regexDetails.passwordError === false){
+        if (passwordTest === false) {
+            setRegexDetails(preState => ({ ...preState, passwordError: true, passwordHelperText: "this is wrong password" }));
+        }
+        else if (passwordTest === true) {
+            setRegexDetails(preState => ({ ...preState, passwordError: false, passwordHelperText: "" }));
+        }
+
+        if (emailTest === true && passwordTest === true) {
             SignInApi(UserDetails)
-            .then(response => {
-                console.log(response)
-                localStorage.setItem("token",response.data.data)
-            })
-            .catch(error => {
-                console.log(error)
-            })
+                .then(response => {
+                    console.log(response)
+                    localStorage.setItem("token", response.data.data)
+                    navigate('/dashboard')
+                })
+                .catch(error => {
+                    console.log(error)
+                })
         }
     }
     return (
@@ -69,6 +74,7 @@ function UserSignIn() {
                         <div >
                             <TextField
                                 id="outlined-basic"
+                                type='password'
                                 className="InputPassword Input"
                                 label="Password"
                                 variant="outlined"
@@ -86,7 +92,7 @@ function UserSignIn() {
                         <div className="TextInfo2">Learn more.</div>
                     </div>
                     <div className="CreateAccountLogin">
-                        <a href='' className="CreateAccountLink">Create Account</a>
+                        <Button onClick={() => navigate('/newUser')} className="CreateAccountLink" variant="text" sx={{ textTransform: 'none' }}>Create Account</Button>
                         <Button
                             className='LoginButton'
                             variant="contained"

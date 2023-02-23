@@ -41,7 +41,7 @@ export default function NoteBook(props) {
         title={props.note.title}
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary" multiline>
+        <Typography variant="body2" color="text.secondary">
           {props.note.note}
         </Typography>
       </CardContent>

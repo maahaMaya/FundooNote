@@ -6,12 +6,12 @@ import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { RegisterNewUserApi } from '../../Services/User';
+import { useNavigate } from 'react-router-dom';
 
 const nameRegex = /^([A-Z]{1}[a-z,A-Z]{2,})$/;
 const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$/;
 
-// const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 function RegisterNewUser() {
@@ -19,6 +19,8 @@ function RegisterNewUser() {
     const [UserRegister, setUserRegister] = useState({ firstName: '', lastName: '', email: '', password: '', confirmPassword: '' });
     const [RegexRegister, setRegexRegister] = useState({ firstNameError: false, firstNameHelperText: '', lastNameError: false, lastNameHelperText: '', emailError: false, emailHelperText: '', passwordError: false, passwordHelperText: '', confirmPasswordError: false, confirmPasswordHelperText: '', passwordMatchError: false });
     const [PasswordShow, setPasswordShow] = useState({passwordVisible:'password'});
+
+    let navigate = useNavigate();
 
     const InputFirstName = (e) => {
         setUserRegister(preState => ({ ...preState, firstName: e.target.value }))
@@ -36,59 +38,53 @@ function RegisterNewUser() {
         setUserRegister(preState => ({ ...preState, confirmPassword: e.target.value }))
     }
     const RegisterButton = () => {
-
-        if (nameRegex.test(UserRegister.firstName) === false) {
+        let firstNameTest = nameRegex.test(UserRegister.firstName);
+        let lastNameTest = nameRegex.test(UserRegister.lastName);
+        let emailTest = emailRegex.test(UserRegister.email);
+        let passwordTest = passwordRegex.test(UserRegister.password);
+        let confirmPasswordTest = passwordRegex.test(UserRegister.confirmPassword);
+        let checkPasswordsEqual = ( UserRegister.password === UserRegister.confirmPassword)
+        if (firstNameTest === false) {
             setRegexRegister(preState => ({ ...preState, firstNameError: true, firstNameHelperText: "firstLetterCapital" }))
         }
-        else if (nameRegex.test(UserRegister.firstName) === true) {
+        else if (firstNameTest === true) {
             setRegexRegister(preState => ({ ...preState, firstNameError: false, firstNameHelperText: "" }))
         }
 
-        if (nameRegex.test(UserRegister.lastName) === false) {
+        if (lastNameTest === false) {
             setRegexRegister(preState => ({ ...preState, lastNameError: true, lastNameHelperText: "firstLetterCapital" }))
         }
-        else if (nameRegex.test(UserRegister.lastName) === true) {
+        else if (lastNameTest === true) {
             setRegexRegister(preState => ({ ...preState, lastNameError: false, lastNameHelperText: "" }))
         }
 
-        if (emailRegex.test(UserRegister.email) === false) {
+        if (emailTest === false) {
             setRegexRegister(preState => ({ ...preState, emailError: true, emailHelperText: "Enter correct email" }))
         }
-        else if (emailRegex.test(UserRegister.email) === true) {
+        else if (emailTest === true) {
             setRegexRegister(preState => ({ ...preState, emailError: false, emailHelperText: "" }))
         }
 
-        if (passwordRegex.test(UserRegister.password) === false) {
+        if (passwordTest === false) {
             setRegexRegister(preState => ({ ...preState, passwordError: true, passwordHelperText: "EnterWritePassword" }))
         }
-        else if (passwordRegex.test(UserRegister.password) === true) {
+        else if (passwordTest === true) {
             setRegexRegister(preState => ({ ...preState, passwordError: false, passwordHelperText: "" }))
         }
 
-        if (passwordRegex.test(UserRegister.confirmPassword) === false) {
+        if (confirmPasswordTest === false) {
             setRegexRegister(preState => ({ ...preState, confirmPasswordError: true, confirmPasswordHelperText: "EnterWritePassword" }))
         }
-        else if (passwordRegex.test(UserRegister.confirmPassword) === true) {
+        else if (confirmPasswordTest === true) {
             setRegexRegister(preState => ({ ...preState, confirmPasswordError: false, confirmPasswordHelperText: "" }))
         }
 
-        // if (UserRegister.password === UserRegister.confirmPassword) {
-        //     console.log("password match");
-        //     setRegexRegister(preState => ({ ...preState, passwordMatchError: false }))
-        // }
-        // else {
-        //     console.log("password not");
-        //     setRegexRegister(preState => ({ ...preState, passwordMatchError: true }))
-        // }
 
-        // if (RegexRegister.passwordError === true) {
-        //     setRegexRegister(preState => ({ ...preState, passwordError: true, passwordHelperText: "EnterSamePassword", confirmPasswordError: true, confirmPasswordHelperText: "EnterSamePassword" }))
-        // }
-
-        if(RegexRegister.firstNameError === false && RegexRegister.lastNameError === false && RegexRegister.emailError === false && RegexRegister.passwordError === false && RegexRegister.confirmPasswordError === false && RegexRegister.passwordMatchError === false){
+        if(firstNameTest === true && lastNameTest === true && emailTest === true && passwordTest === true && confirmPasswordTest === true && checkPasswordsEqual === true){
             RegisterNewUserApi(UserRegister)
             .then(response => {
                 console.log(response)
+                navigate('/')
             })
             .catch(error => {
                 console.log(error)
@@ -98,7 +94,7 @@ function RegisterNewUser() {
     }
 
     const ShowPasswordButton = (e) => {
-        //console.log("---", e.target.checked)
+        //console.log(e.target.checked)
         if((e.target.checked)===true){
             console.log("T");
             setPasswordShow({passwordVisible:'text'});
@@ -118,7 +114,7 @@ function RegisterNewUser() {
                     <div className='TextLogo2'>to continue to Gmail</div>
                     <div className='NameContainer'>
                         <TextField
-                            id="outlined-basic"
+                            id="outlined-basic1"
                             onChange={InputFirstName}
                             error={RegexRegister.firstNameError}
                             helperText={RegexRegister.firstNameHelperText}
@@ -127,7 +123,7 @@ function RegisterNewUser() {
                             variant="outlined"
                             size='small' />
                         <TextField
-                            id="outlined-basic"
+                            id="outlined-basic2"
                             onChange={InputLastName}
                             error={RegexRegister.lastNameError}
                             helperText={RegexRegister.lastNameHelperText}
@@ -138,7 +134,7 @@ function RegisterNewUser() {
                     </div>
                     <div className='EmailContainer'>
                         <TextField
-                            id="outlined-basic"
+                            id="outlined-basic3"
                             onChange={InputEmail}
                             error={RegexRegister.emailError}
                             helperText={RegexRegister.emailHelperText}
@@ -150,7 +146,7 @@ function RegisterNewUser() {
                     </div>
                     <div className='PasswordContainer'>
                         <TextField
-                            id="outlined-basic"
+                            id="outlined-basic4"
                             onChange={InputPassword}
                             error={RegexRegister.passwordError}
                             helperText={RegexRegister.passwordHelperText}
@@ -160,7 +156,7 @@ function RegisterNewUser() {
                             type={PasswordShow.passwordVisible}
                             size='small' />
                         <TextField
-                            id="outlined-basic"
+                            id="outlined-basic5"
                             onChange={InputConfirmPassword}
                             error={RegexRegister.confirmPasswordError}
                             helperText={RegexRegister.confirmPasswordHelperText}
@@ -179,7 +175,7 @@ function RegisterNewUser() {
                         </FormGroup>
                     </div>
                     <div className="CreateAccount">
-                        <a className="LoginLink">Sign in instead</a>
+                    <Button onClick={() => navigate('/')} className="LoginLink" variant="text" sx={{ textTransform: 'none' }}>Sign in instead</Button>
                         <Button
                             className='LoginButton'
                             onClick={RegisterButton}

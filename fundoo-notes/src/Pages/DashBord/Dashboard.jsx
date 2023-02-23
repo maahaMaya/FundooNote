@@ -3,12 +3,12 @@ import './Dashboard.css'
 import ApplicationBar from "../../Component/Header/Header";
 import InputBox from "../../Component/InputBox/InputBox";
 import InputCardBox from "../../Component/InputCardBox/InputCardBox";
-import NoteBook from "../NoteBox/NoteBox";
+import NoteBook from "../../Component/NoteBox/NoteBox";
 import { AllNoteRetriveApi } from "../../Services/NoteService";
 
 function Dashboard() {
     const [toggle, setToggle] = useState(true);
-    const [noteList, setNoteList] = useState([])
+    const [noteList, setNoteList] = useState([]);
 
     const listenToInputBox = () => {
         setToggle(false)
@@ -29,16 +29,16 @@ function Dashboard() {
 
     return (
         <>
-            <ApplicationBar />
+            <ApplicationBar/>
             <div className="SwitchInputBox">
                 {
                     toggle ? <InputBox listenToInputBox={listenToInputBox} /> : <InputCardBox listenToInputCardBox={listenToInputCardBox} />
                 }
             </div>
 
-            <div style={{ width: '70%', height: '100%', border: '1px solid red', display: 'flex', flexWrap: 'wrap' }}>
+            <div className="DashboardNoteBox">
                 {
-                    noteList.map(note => (<NoteBook note={note} />))
+                    noteList.map(note => (<NoteBook key={note.noteID} note={note} />))
                 }
             </div>
         </>
