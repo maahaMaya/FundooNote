@@ -12,7 +12,7 @@ import PaletteOutlinedIcon from '@mui/icons-material/PaletteOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
-import { ArchieveNoteApi, TrashNoteApi } from '../../Services/NoteService';
+import { ArchieveNoteApi, PinNoteApi, TrashNoteApi } from '../../Services/NoteService';
 
 
 export default function NoteBook(props) {
@@ -42,12 +42,24 @@ export default function NoteBook(props) {
         console.log(err)
       })
   }
+  const NoteBookPushPinOutlinedIconClick = (id) => {
+    let nId = {
+      "noteID": id
+    }
+    PinNoteApi(nId)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
   return (
     <Card sx={{ maxWidth: 240 }}>
       <CardHeader
         action={
           <IconButton aria-label="settings">
-            <PushPinOutlinedIcon fontSize="small" />
+            <PushPinOutlinedIcon onClick={() => NoteBookPushPinOutlinedIconClick(props.note.noteID)} fontSize="small" />
           </IconButton>
         }
         title={props.note.title}
