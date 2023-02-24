@@ -9,7 +9,6 @@ import InputBase from '@mui/material/InputBase';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
-import PaletteOutlinedIcon from '@mui/icons-material/PaletteOutlined';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
@@ -17,9 +16,11 @@ import Button from '@mui/material/Button';
 import UndoIcon from '@mui/icons-material/Undo';
 import RedoIcon from '@mui/icons-material/Redo';
 import { CreateNewNoteApi } from '../../Services/NoteService';
+import ColorPopper from '../ColorPopper/ColorPopper';
 
 export default function InputCardBox(props) {
-    const [noteData, setNoteData] = useState({ title: '', note: '' , isArchive: false, isPin: false});
+    const [noteData, setNoteData] = useState({ title: '', note: '' , color:'#ffffff', isArchive: false, isPin: false});
+    const [InputCardBoxColor , setInputCardBoxColor] = useState('')
 
     const OnClickInputCardBoxClose = () => {
         props.listenToInputCardBox()
@@ -48,11 +49,14 @@ export default function InputCardBox(props) {
     const InputCardBoxPushPinOutlinedIconClick = () => {
         setNoteData(preState => ({...preState, isPin : true }))
     }
-    const Check = () => {
-        console.log(noteData)
+
+    const listenToColorPopper1 = (popperColor) => {
+        setInputCardBoxColor(popperColor)
+        setNoteData(preState => ({...preState, color : popperColor }))
     }
+
     return (
-        <Card sx={{ maxWidth: 600 }}>
+        <Card sx={{ maxWidth: 600, backgroundColor:InputCardBoxColor }}>
             <CardHeader
                 avatar={
                     <InputBase onChange={InputCardBoxChangetitle} id="outlined-basic" placeholder='Title' variant="outlined" multiline fullWidth="true" />
@@ -75,9 +79,7 @@ export default function InputCardBox(props) {
                     <IconButton aria-label="collaborator">
                         <PersonAddAltOutlinedIcon fontSize="small" />
                     </IconButton>
-                    <IconButton aria-label="colorAddBg">
-                        <PaletteOutlinedIcon fontSize="small" />
-                    </IconButton>
+                    <ColorPopper listenToColorPopper1={listenToColorPopper1} action="create"/>
                     <IconButton aria-label="imageAddBg">
                         <InsertPhotoOutlinedIcon fontSize="small" />
                     </IconButton>
@@ -87,7 +89,7 @@ export default function InputCardBox(props) {
                     <IconButton aria-label="more">
                         <MoreVertOutlinedIcon fontSize="small" />
                     </IconButton>
-                    <IconButton onClick={Check} aria-label="more">
+                    <IconButton aria-label="more">
                         <UndoIcon fontSize="small" />
                     </IconButton>
                     <IconButton aria-label="more" >

@@ -34,3 +34,7 @@ export const TrashNoteApi = (data) => {
     let response = axios.put(`${noteApi}/MoveToTrash`, data, HeaderConfig)
     return response;
 }
+export const ColorNoteApi = (data) => {
+    let response = axios.put(`${noteApi}/ChangeColor`, data, HeaderConfig)
+    return response;
+}

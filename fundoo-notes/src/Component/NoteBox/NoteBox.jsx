@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
@@ -12,11 +12,11 @@ import PaletteOutlinedIcon from '@mui/icons-material/PaletteOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
-import { ArchieveNoteApi, PinNoteApi, TrashNoteApi } from '../../Services/NoteService';
+import { ArchieveNoteApi, ColorNoteApi, PinNoteApi, TrashNoteApi } from '../../Services/NoteService';
+import ColorPopper from '../ColorPopper/ColorPopper';
 
 
 export default function NoteBook(props) {
-
   const NoteBookArchiveOutlinedIconClick = (id) => {
     let nId = {
       "noteID": id
@@ -54,8 +54,24 @@ export default function NoteBook(props) {
         console.log(err)
       })
   }
+
+  const listenToColorPopper2 = (popperColor) => {
+    console.log(popperColor)
+    let nId = {
+      "noteID": props.note.noteID,
+      "color": popperColor
+    }
+   ColorNoteApi(nId)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+  
   return (
-    <Card sx={{ maxWidth: 240 }}>
+    <Card sx={{ maxWidth: 240, backgroundColor : props.note.color }}>
       <CardHeader
         action={
           <IconButton aria-label="settings">
@@ -76,9 +92,7 @@ export default function NoteBook(props) {
         <IconButton aria-label="collaborator">
           <PersonAddAltOutlinedIcon fontSize="small" />
         </IconButton>
-        <IconButton aria-label="colorAddBg">
-          <PaletteOutlinedIcon fontSize="small" />
-        </IconButton>
+        <ColorPopper listenToColorPopper2 = {listenToColorPopper2} action="update"/>
         <IconButton onClick={() => NoteBookDeleteOutlinedIconClick(props.note.noteID)} aria-label="imageAddBg">
           <DeleteOutlinedIcon fontSize="small" />
         </IconButton>
