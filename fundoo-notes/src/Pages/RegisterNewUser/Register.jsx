@@ -5,14 +5,12 @@ import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { RegisterNewUserApi } from '../../Services/User';
+import { RegisterNewUserApi } from '../../Services/UserService';
 import { useNavigate } from 'react-router-dom';
 
 const nameRegex = /^([A-Z]{1}[a-z,A-Z]{2,})$/;
 const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
 const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$/;
-
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 function RegisterNewUser() {
 
@@ -183,7 +181,7 @@ function RegisterNewUser() {
                     </div>
                 </div>
                 <div className='ImageConatiner'>
-                    <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" className='Image' />
+                    <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" alt="FundooLogo" className='Image' />
                     <figcaption className='figText'>One account. All of Google working for you.</figcaption>
                 </div>
             </form>

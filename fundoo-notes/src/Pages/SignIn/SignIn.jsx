@@ -2,7 +2,7 @@ import './SignIn.css';
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { SignInApi } from '../../Services/User';
+import { SignInApi } from '../../Services/UserService';
 import { useNavigate } from 'react-router-dom';
 
 const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
@@ -52,6 +52,11 @@ function UserSignIn() {
                 })
         }
     }
+
+    const ForgotPasswordPageLoad = () => {
+        navigate('/forgotPassword')
+    }
+
     return (
         <div className='MainDiv'>
             <div className='SignInForm'>
@@ -85,7 +90,7 @@ function UserSignIn() {
                         </div>
                     </div>
                     <div className='ForgotPasswordText'>
-                        <div>Forgot Password?</div>
+                        <div onClick={ForgotPasswordPageLoad}>Forgot Password?</div>
                     </div>
                     <div className="TextInfo">
                         <div>Not your computer? Use Guest mode to sign in privately.</div>

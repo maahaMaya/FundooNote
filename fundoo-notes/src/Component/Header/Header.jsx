@@ -1,7 +1,5 @@
 import * as React from 'react';
 import './Header.css'
-import { deepOrange } from '@mui/material/colors';
-import Avatar from '@mui/material/Avatar';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -15,6 +13,7 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import UserLogo from '../UserLogo/UserLogo';
 
 export default function ApplicationBar() {
     const iconButtonStyles = {
@@ -121,11 +120,7 @@ export default function ApplicationBar() {
                     >
                         <SettingsOutlinedIcon />
                     </IconButton>
-                    <Avatar
-                        sx={{ bgcolor: deepOrange[500] }}
-                    >
-                        S
-                    </Avatar>
+                    <UserLogo/>
                 </Toolbar>
             </AppBar>
         </Box>
