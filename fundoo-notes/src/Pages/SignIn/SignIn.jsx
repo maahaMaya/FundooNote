@@ -62,7 +62,7 @@ function UserSignIn() {
                     <div className="InputBox">
                         <div >
                             <TextField
-                                id="outlined-basic"
+                                id="outlined-basic1"
                                 className="InputEmail Input"
                                 label="Email or Phone"
                                 variant="outlined"
@@ -73,7 +73,7 @@ function UserSignIn() {
                         </div>
                         <div >
                             <TextField
-                                id="outlined-basic"
+                                id="outlined-basic2"
                                 type='password'
                                 className="InputPassword Input"
                                 label="Password"

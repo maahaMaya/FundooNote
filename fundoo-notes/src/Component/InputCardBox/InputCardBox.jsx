@@ -7,7 +7,6 @@ import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
-import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
@@ -17,6 +16,7 @@ import UndoIcon from '@mui/icons-material/Undo';
 import RedoIcon from '@mui/icons-material/Redo';
 import { CreateNewNoteApi } from '../../Services/NoteService';
 import ColorPopper from '../ColorPopper/ColorPopper';
+import RemainderSet from '../RemainderSet/RemainderSet';
 
 export default function InputCardBox(props) {
     const [noteData, setNoteData] = useState({ title: '', note: '' , color:'#ffffff', isArchive: false, isPin: false});
@@ -55,6 +55,7 @@ export default function InputCardBox(props) {
         setNoteData(preState => ({...preState, color : popperColor }))
     }
 
+
     return (
         <Card sx={{ maxWidth: 600, backgroundColor:InputCardBoxColor }}>
             <CardHeader
@@ -68,14 +69,11 @@ export default function InputCardBox(props) {
                 }
             />
             <CardContent>
-
                 <InputBase onChange={InputCardBoxChangeNote} id="outlined-basic" placeholder='Take a note...' multiline fullWidth="true" />
             </CardContent>
             <CardActions disableSpacing className='CardInputBoxAction'>
                 <div>
-                    <IconButton aria-label="remindMe" >
-                        <NotificationsActiveOutlinedIcon fontSize="small" />
-                    </IconButton>
+                    <RemainderSet />
                     <IconButton aria-label="collaborator">
                         <PersonAddAltOutlinedIcon fontSize="small" />
                     </IconButton>

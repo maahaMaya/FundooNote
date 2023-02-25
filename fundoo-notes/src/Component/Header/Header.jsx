@@ -123,8 +123,6 @@ export default function ApplicationBar() {
                     </IconButton>
                     <Avatar
                         sx={{ bgcolor: deepOrange[500] }}
-                        alt="Remy Sharp"
-                        src="/broken-image.jpg"
                     >
                         S
                     </Avatar>
