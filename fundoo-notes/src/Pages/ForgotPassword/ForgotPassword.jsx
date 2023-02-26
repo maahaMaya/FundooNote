@@ -1,3 +1,4 @@
+import './ForgotPassword.css';
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
@@ -72,8 +73,8 @@ export default function ForgotPassword() {
     }
 
     return (
-        <div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
+        <div className='ForgotPasswordMainDiv'>
+            <div>
                 <Paper sx={{ width: '30vw', height: '70vh' }} variant="outlined" >
                     <div className="Text Text1">Fundoo</div>
                     <div className="Text Text2">Find your email</div>

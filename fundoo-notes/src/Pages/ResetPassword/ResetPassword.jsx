@@ -1,8 +1,9 @@
+import './ResetPassword.css';
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import { ForgotPasswordApi, ResetPasswordApi } from '../../Services/UserService';
+import { ResetPasswordApi } from '../../Services/UserService';
 import { useNavigate } from 'react-router-dom';
 const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$/;
 
@@ -22,14 +23,14 @@ export default function ResetPassword() {
         let testPassword = passwordRegex.test(passwordDetails.password)
         let testConfirmPassword = passwordRegex.test(passwordDetails.confirmPassword)
         let matchPassword = (passwordDetails.testConfirmPassword === passwordDetails.testPassword);
-        if(testPassword == false){
+        if(testPassword === false){
             setPasswordInput(preState => ({ ...preState, passwordError:true, passwordHelperText: "Enter Write Password" }))
         }
         else{
             setPasswordInput(preState => ({ ...preState, passwordError:false, confirmPasswordHelper: "" }))
         }
 
-        if(testConfirmPassword == false){
+        if(testConfirmPassword === false){
             setPasswordInput(preState => ({ ...preState, confirmPasswordError:true, confirmPasswordHelper: "Enter Write Password" }))
         }
         else{
@@ -55,12 +56,12 @@ export default function ResetPassword() {
         }
     }
     return (
-        <div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
+        <div className='ResetPasswordMainDiv'>
+            <div>
                 <Paper sx={{ width: '30vw', height: '70vh' }} variant="outlined" >
                     <div className="Text Text1">Fundoo</div>
-                    <div className="Text Text2">Find your email</div>
-                    <div className="Text Text3">Enter your phone number or recovery email</div>
+                    <div className="Text Text2">Change your password</div>
+                    <div className="Text Text3">Create a new Password that you dont use for other website</div>
                     <TextField
                         sx={{ width: '80%', margin: '3vw' }}
                         id="outlined-basic1"
@@ -86,6 +87,5 @@ export default function ResetPassword() {
                 </Paper>
             </div>
         </div>
-
     );
 }
