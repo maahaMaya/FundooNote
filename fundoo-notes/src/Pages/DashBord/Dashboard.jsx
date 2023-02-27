@@ -13,18 +13,27 @@ function Dashboard() {
     const listenToInputBox = () => {
         setToggle(false)
     }
+
     const listenToInputCardBox = () => {
         setToggle(true)
     }
-    useEffect(() => {
+
+    const AutoRefreshNote = () => {
+        AllNoteRetriveApiCall()
+    }
+    const AllNoteRetriveApiCall = () => {
         AllNoteRetriveApi()
-            .then(response => {
-                console.log(response)
-                setNoteList(response.data.data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        .then(response => {
+            console.log(response)
+            setNoteList(response.data.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+    useEffect(() => {
+        AllNoteRetriveApiCall();
     }, [])
 
     return (
@@ -32,7 +41,7 @@ function Dashboard() {
             <ApplicationBar/>
             <div className="SwitchInputBox">
                 {
-                    toggle ? <InputBox listenToInputBox={listenToInputBox} /> : <InputCardBox listenToInputCardBox={listenToInputCardBox} />
+                    toggle ? <InputBox listenToInputBox={listenToInputBox} /> : <InputCardBox listenToInputCardBox={listenToInputCardBox} AutoRefreshNote={AutoRefreshNote} />
                 }
             </div>
 

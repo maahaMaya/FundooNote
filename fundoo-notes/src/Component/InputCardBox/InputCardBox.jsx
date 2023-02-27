@@ -29,6 +29,7 @@ export default function InputCardBox(props) {
             CreateNewNoteApi(noteData)
             .then(response => {
                 console.log(response)
+                props.AutoRefreshNote()
             })
             .catch(err => {
                 console.log(err)
@@ -43,9 +44,11 @@ export default function InputCardBox(props) {
     const InputCardBoxChangeNote = (e) => {
         setNoteData(preState => ({...preState, note : e.target.value }))
     }
+
     const InputCardBoxArchiveOutlinedIconClick = () => {
         setNoteData(preState => ({...preState, isArchive : true }))
     }
+
     const InputCardBoxPushPinOutlinedIconClick = () => {
         setNoteData(preState => ({...preState, isPin : true }))
     }
