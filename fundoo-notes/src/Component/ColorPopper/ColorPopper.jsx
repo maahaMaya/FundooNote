@@ -32,7 +32,7 @@ function ColorPopper(props) {
                 <Box sx={{ border: 1, p: 1, bgcolor: 'background.paper', width: 300, display: 'flex', justifyContent: 'space-between' }}>
                     {
                         colors.map(color => (
-                            <div style={{ width: 20, height: 20, border: '1px solid red', borderRadius: 100, backgroundColor: color }} onClick={() => PickColor(color)}></div>
+                            <div key={color} style={{ width: 20, height: 20, border: '1px solid red', borderRadius: 100, backgroundColor: color }} onClick={() => PickColor(color)}></div>
                         ))
                     }
                 </Box>

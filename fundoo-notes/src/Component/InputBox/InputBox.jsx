@@ -14,7 +14,7 @@ export default function InputBox(props) {
     }
     return (
         <Stack spacing={3} direction="row" className='inputBoxMainDiv'  >
-            <InputBase id="outlined-basic" placeholder='Take a note...' variant="outlined" multiline fullWidth="true" onClick={InputCardBoxRender} />
+            <InputBase id="outlined-basic" placeholder='Take a note...' variant="outlined" multiline fullWidth={true} onClick={InputCardBoxRender} />
             <IconButton aria-label="checked">
                 <CheckBoxOutlinedIcon fontSize="small" />
             </IconButton>

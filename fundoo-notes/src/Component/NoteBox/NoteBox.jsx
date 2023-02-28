@@ -73,8 +73,8 @@ export default function NoteBook(props) {
     <Card sx={{ maxWidth: 240, backgroundColor : props.note.color }}>
       <CardHeader
         action={
-          <IconButton aria-label="settings">
-            <PushPinOutlinedIcon onClick={() => NoteBookPushPinOutlinedIconClick(props.note.noteID)} fontSize="small" />
+          <IconButton onClick={() => NoteBookPushPinOutlinedIconClick(props.note.noteID)} aria-label="settings">
+            <PushPinOutlinedIcon  fontSize="small" />
           </IconButton>
         }
         title={props.note.title}
