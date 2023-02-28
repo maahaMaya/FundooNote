@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './InputCardBox.css';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
@@ -14,22 +13,26 @@ import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import Button from '@mui/material/Button';
 import UndoIcon from '@mui/icons-material/Undo';
 import RedoIcon from '@mui/icons-material/Redo';
-import { CreateNewNoteApi } from '../../Services/NoteService';
+import { UpdateNoteApi } from '../../Services/NoteService';
 import ColorPopper from '../ColorPopper/ColorPopper';
 import RemainderSet from '../RemainderSet/RemainderSet';
 
-export default function InputCardBox(props) {
-    const [noteData, setNoteData] = useState({ title: '', note: '' , color:'#ffffff', isArchive: false, isPin: false});
+export default function InputCardBoxModal(props) {
+    const [noteData, setNoteData] = useState({ title: props.NoteDataPassToInputCardBoxModal.title, note: props.NoteDataPassToInputCardBoxModal.note , color:'', isArchive: false, isPin: false});
     const [InputCardBoxColor , setInputCardBoxColor] = useState('')
-
-    const OnClickInputCardBoxClose = () => {
-        props.listenToInputCardBox()
+    const OnClickInputCardBoxModalClose = () => {
+        let NoteUpdateData = {
+            "noteID": props.NoteDataPassToInputCardBoxModal.noteID,
+            "title": noteData.title,
+            "note": noteData.note
+          }
+        props.handleClose(NoteUpdateData)
         if(noteData.title || noteData.note){
-            console.log("Api call for create note")
-            CreateNewNoteApi(noteData)
+            console.log("Api call for update note")
+            UpdateNoteApi(NoteUpdateData)
             .then(response => {
                 console.log(response)
-                props.AutoRefreshNote()
+                //props.AutoRefreshNote()
             })
             .catch(err => {
                 console.log(err)
@@ -37,19 +40,19 @@ export default function InputCardBox(props) {
         }
     }
 
-    const InputCardBoxChangetitle = (e) => {
+    const InputCardBoxModalChangetitle = (e) => {
         setNoteData(preState => ({...preState, title : e.target.value }))
     }
 
-    const InputCardBoxChangeNote = (e) => {
+    const InputCardBoxModalChangeNote = (e) => {
         setNoteData(preState => ({...preState, note : e.target.value }))
     }
 
-    const InputCardBoxArchiveOutlinedIconClick = () => {
+    const InputCardBoxModalArchiveOutlinedIconClick = () => {
         setNoteData(preState => ({...preState, isArchive : true }))
     }
 
-    const InputCardBoxPushPinOutlinedIconClick = () => {
+    const InputCardBoxModalPushPinOutlinedIconClick = () => {
         setNoteData(preState => ({...preState, isPin : true }))
     }
 
@@ -63,16 +66,16 @@ export default function InputCardBox(props) {
         <Card sx={{ maxWidth: 600, backgroundColor:InputCardBoxColor }}>
             <CardHeader
                 avatar={
-                    <InputBase onChange={InputCardBoxChangetitle} id="outlined-basic" placeholder='Title' variant="outlined" multiline fullWidth={true} />
+                    <InputBase onChange={InputCardBoxModalChangetitle} value={noteData.title}  id="outlined-basic" placeholder='Title' variant="outlined" multiline fullWidth={true} />
                 }
                 action={
-                    <IconButton onClick={InputCardBoxPushPinOutlinedIconClick} aria-label="settings">
+                    <IconButton onClick={InputCardBoxModalPushPinOutlinedIconClick} aria-label="settings">
                         <PushPinOutlinedIcon fontSize="small" />
                     </IconButton>
                 }
             />
             <CardContent>
-                <InputBase onChange={InputCardBoxChangeNote} id="outlined-basic" placeholder='Take a note...' multiline fullWidth={true} />
+                <InputBase onChange={InputCardBoxModalChangeNote} value={noteData.note} id="outlined-basic" placeholder='Take a note...' multiline  />
             </CardContent>
             <CardActions disableSpacing className='CardInputBoxAction'>
                 <div>
@@ -84,7 +87,7 @@ export default function InputCardBox(props) {
                     <IconButton aria-label="imageAddBg">
                         <InsertPhotoOutlinedIcon fontSize="small" />
                     </IconButton>
-                    <IconButton onClick={InputCardBoxArchiveOutlinedIconClick} aria-label="archive">
+                    <IconButton onClick={InputCardBoxModalArchiveOutlinedIconClick} aria-label="archive">
                         <ArchiveOutlinedIcon fontSize="small" />
                     </IconButton>
                     <IconButton aria-label="more">
@@ -98,7 +101,7 @@ export default function InputCardBox(props) {
                     </IconButton>
                 </div>
                 <div>
-                    <Button onClick={OnClickInputCardBoxClose} color="secondary" sx={{ textTransform: 'none' }}>Close</Button>
+                    <Button onClick={OnClickInputCardBoxModalClose} color="secondary" sx={{ textTransform: 'none' }}>Close</Button>
                 </div>
             </CardActions>
         </Card>

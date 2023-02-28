@@ -38,3 +38,7 @@ export const ColorNoteApi = (data) => {
     let response = axios.put(`${noteApi}/ChangeColor`, data, HeaderConfig)
     return response;
 }
+export const UpdateNoteApi = (data) => {
+    let response = axios.put(`${noteApi}/UpdateNote`, data, HeaderConfig)
+    return response;
+}

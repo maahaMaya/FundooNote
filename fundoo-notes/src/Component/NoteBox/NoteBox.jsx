@@ -13,9 +13,16 @@ import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import { ArchieveNoteApi, ColorNoteApi, PinNoteApi, TrashNoteApi } from '../../Services/NoteService';
 import ColorPopper from '../ColorPopper/ColorPopper';
+import Modal from '@mui/material/Modal';
+import InputCardBoxModal from '../InputCardBoxModal/InputCardBoxModal';
 
 
 export default function NoteBook(props) {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  let NoteDataPassToInputCardBoxModal = props.note;
   const NoteBookArchiveOutlinedIconClick = (id) => {
     let nId = {
       "noteID": id
@@ -60,7 +67,7 @@ export default function NoteBook(props) {
       "noteID": props.note.noteID,
       "color": popperColor
     }
-   ColorNoteApi(nId)
+    ColorNoteApi(nId)
       .then(res => {
         console.log(res)
       })
@@ -68,19 +75,20 @@ export default function NoteBook(props) {
         console.log(err)
       })
   }
-  
-  return (
-    <Card sx={{ maxWidth: 240, backgroundColor : props.note.color }}>
+
+  return (<>
+    <Card sx={{ maxWidth: 240, backgroundColor: props.note.color }}>
       <CardHeader
         action={
           <IconButton onClick={() => NoteBookPushPinOutlinedIconClick(props.note.noteID)} aria-label="settings">
-            <PushPinOutlinedIcon  fontSize="small" />
+            <PushPinOutlinedIcon fontSize="small" />
           </IconButton>
         }
         title={props.note.title}
+        onClick={handleOpen}
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
+        <Typography onClick={handleOpen} variant="body2" color="text.secondary">
           {props.note.note}
         </Typography>
       </CardContent>
@@ -91,7 +99,7 @@ export default function NoteBook(props) {
         <IconButton aria-label="collaborator">
           <PersonAddAltOutlinedIcon fontSize="small" />
         </IconButton>
-        <ColorPopper listenToColorPopper2 = {listenToColorPopper2} action="update"/>
+        <ColorPopper listenToColorPopper2={listenToColorPopper2} action="update" />
         <IconButton onClick={() => NoteBookDeleteOutlinedIconClick(props.note.noteID)} aria-label="imageAddBg">
           <DeleteOutlinedIcon fontSize="small" />
         </IconButton>
@@ -103,5 +111,18 @@ export default function NoteBook(props) {
         </IconButton>
       </CardActions>
     </Card>
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+      style={{display:'flex', justifyContent:'center', alignItems:'center' }}
+    >
+      <div style={{width:'600px'}}>
+        <InputCardBoxModal handleClose={handleClose} NoteDataPassToInputCardBoxModal={NoteDataPassToInputCardBoxModal}/>
+      </div>
+    </Modal>
+  </>
+
   );
 }
