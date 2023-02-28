@@ -5,6 +5,7 @@ import InputBox from "../../Component/InputBox/InputBox";
 import InputCardBox from "../../Component/InputCardBox/InputCardBox";
 import NoteBook from "../../Component/NoteBox/NoteBox";
 import { AllNoteRetriveApi } from "../../Services/NoteService";
+import NavigationBar from "../../Component/NavigationBar/NavigationBar";
 
 function Dashboard() {
     const [toggle, setToggle] = useState(true);
@@ -38,7 +39,7 @@ function Dashboard() {
 
     return (
         <>
-            <ApplicationBar/>
+            <NavigationBar/>
             <div className="SwitchInputBox">
                 {
                     toggle ? <InputBox listenToInputBox={listenToInputBox} /> : <InputCardBox listenToInputCardBox={listenToInputCardBox} AutoRefreshNote={AutoRefreshNote} />
