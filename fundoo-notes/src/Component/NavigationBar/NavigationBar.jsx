@@ -100,13 +100,17 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 );
 
-export default function NavigationBar() {
+export default function NavigationBar(props) {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
     const handleDrawerOpenClose = () => {
         setOpen(!open);
     };
+
+    const SelectNavBarText = (label) => {
+        props.NavBarRecivedText(label)
+    }
 
     return (
         <>
@@ -152,7 +156,7 @@ export default function NavigationBar() {
                     </DrawerHeader>
                     <Divider />
                     <List>
-                        <ListItem disablePadding sx={{ display: 'block' }}>
+                        <ListItem disablePadding sx={{ display: 'block' }}  onClick={() => SelectNavBarText("Notes")}>
                             <ListItemButton>
                                 <ListItemIcon>
                                     <LightbulbOutlinedIcon />
@@ -169,7 +173,7 @@ export default function NavigationBar() {
                             </ListItemButton>
                         </ListItem>
 
-                        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                        {/* {['All mail', 'Trash', 'Spam'].map((text, index) => (
                             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
                                 <ListItemButton
                                     sx={{
@@ -190,7 +194,7 @@ export default function NavigationBar() {
                                     <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
                                 </ListItemButton>
                             </ListItem>
-                        ))}
+                        ))} */}
 
 
                         <ListItem disablePadding sx={{ display: 'block' }}>
@@ -201,15 +205,15 @@ export default function NavigationBar() {
                                 <ListItemText primary="Edit labels" sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </ListItem>
-                        <ListItem disablePadding sx={{ display: 'block' }}>
-                            <ListItemButton>
+                        <ListItem disablePadding sx={{ display: 'block' }} onClick={() => SelectNavBarText("Archieve")}>
+                            <ListItemButton >
                                 <ListItemIcon>
                                     <ArchiveOutlinedIcon />
                                 </ListItemIcon>
                                 <ListItemText primary="Archieve" sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </ListItem>
-                        <ListItem disablePadding sx={{ display: 'block' }}>
+                        <ListItem disablePadding sx={{ display: 'block' }} onClick={() => SelectNavBarText("Trash")}>
                             <ListItemButton>
                                 <ListItemIcon>
                                     <DeleteOutlineOutlinedIcon />
