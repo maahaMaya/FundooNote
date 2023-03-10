@@ -30,6 +30,7 @@ export default function NoteBook(props) {
     ArchieveNoteApi(nId)
       .then(res => {
         console.log(res)
+        props.AutoRefreshNote();
       })
       .catch(err => {
         console.log(err)
@@ -43,6 +44,7 @@ export default function NoteBook(props) {
     TrashNoteApi(nId)
       .then(res => {
         console.log(res)
+        props.AutoRefreshNote();
       })
       .catch(err => {
         console.log(err)
@@ -70,6 +72,7 @@ export default function NoteBook(props) {
     ColorNoteApi(nId)
       .then(res => {
         console.log(res)
+        props.AutoRefreshNote();
       })
       .catch(err => {
         console.log(err)

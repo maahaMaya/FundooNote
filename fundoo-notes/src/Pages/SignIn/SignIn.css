@@ -92,3 +92,9 @@
     width: 85px;
     height: 35px;
 }
+
+@media screen and (min-width:320px) and (max-width:800px) {
+    .FormBody{
+        width: 100%;
+    }   
+}

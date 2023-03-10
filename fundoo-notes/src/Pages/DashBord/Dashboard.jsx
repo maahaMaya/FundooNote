@@ -51,6 +51,13 @@ function Dashboard() {
                         }
                     })
                 }
+                else {
+                    noteArray = response.data.data.filter((note) => {
+                        if (noteNavBarValue === note.title) {
+                            return note;
+                        }
+                    })
+                }
                 setNoteList(noteArray)
             })
             .catch(err => {
@@ -66,19 +73,27 @@ function Dashboard() {
         console.log(label)
         setNeNavBarValue(label)
     }
+    const SerchHeader = (value) => {
+        if(!value){
+            setNeNavBarValue("note")
+        }
+        else{
+            setNeNavBarValue(value)
+        }
+    }
 
     return (
         <>
-            <NavigationBar NavBarRecivedText={NavBarRecivedText} />
+            <NavigationBar NavBarRecivedText={NavBarRecivedText} SerchHeader={SerchHeader} AutoRefreshNote={AutoRefreshNote}/>
             <div className="SwitchInputBox">
                 {
-                    toggle ? <InputBox listenToInputBox={listenToInputBox} /> : <InputCardBox listenToInputCardBox={listenToInputCardBox} AutoRefreshNote={AutoRefreshNote} />
+                    toggle ? <InputBox listenToInputBox={listenToInputBox} AutoRefreshNote={AutoRefreshNote} /> : <InputCardBox listenToInputCardBox={listenToInputCardBox} AutoRefreshNote={AutoRefreshNote} />
                 }
             </div>
 
             <div className="DashboardNoteBox">
                 {
-                    noteList.map(note => (<NoteBook key={note.noteID} note={note} />))
+                    noteList.map(note => (<NoteBook key={note.noteID} note={note} AutoRefreshNote={AutoRefreshNote}/>))
                 }
             </div>
         </>

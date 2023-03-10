@@ -46,6 +46,14 @@ const AppBar = styled(MuiAppBar, {
         props.handleDrawerOpenClose();
     };
 
+    const SerachNote = (event) => {
+        props.SerchHeader(event.target.value)   
+    }
+
+    const RefreshNotePage = () => {
+        props.AutoRefreshNote();
+    }
+
     return (
         <>
             <AppBar position="fixed" open={open} style={{ backgroundColor: '#fff', color: '#000' }}>
@@ -70,8 +78,9 @@ const AppBar = styled(MuiAppBar, {
                         InputProps={{
                             startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment>,
                         }}
+                        onKeyUp={SerachNote}
                     />
-                    <IconButton size="large" edge="start" color="#757575" aria-label="menu" sx={{ mr: '1%' }}>
+                    <IconButton onClick={RefreshNotePage} size="large" edge="start" color="#757575" aria-label="menu" sx={{ mr: '1%' }}>
                         <RefreshOutlinedIcon />
                     </IconButton>
                     <IconButton size="large" edge="start" color="#757575" aria-label="menu" sx={{ mr: '1%' }}>

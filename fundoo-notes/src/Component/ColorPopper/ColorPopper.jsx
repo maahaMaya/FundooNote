@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import PaletteOutlinedIcon from '@mui/icons-material/PaletteOutlined';
 
 function ColorPopper(props) {
-    const colors = ["#ffffff", "#2ECC71", "#AF7AC5", "#F1948A", "#A3E4D7", "#F5B7B1", "#F5B041", "#DC7633", "#F1C40F", "#AAB7B8", "#F1948A", "#2ECC71", "#F5B041"]
+    const colors =["#ffffff" ,"#f28b82", "#fbbc04", "#fff475", "#ccff90", "#a7ffeb", "#cbf0f8", "#aecbfa", "#d7aefb", "#e8eaed", "#e6c9a8", "#fdcfe8"]
 
     const [anchorEl, setAnchorEl] = useState(null);
     const handleClick = (event) => {

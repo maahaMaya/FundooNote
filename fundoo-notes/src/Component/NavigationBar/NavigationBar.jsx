@@ -70,7 +70,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 function NavigationBar(props) {
     const theme = useTheme();
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
 
     const handleDrawerOpenClose = () => {
         setOpen(!open);
@@ -78,20 +78,24 @@ function NavigationBar(props) {
 
     const SelectNavBarText = (label) => {
         props.NavBarRecivedText(label)
-        props.dispatch({type:`${label}`})
+        props.dispatch({ type: `${label}` })
+    }
+
+    const SerchHeader = (value) => {
+        props.SerchHeader(value)
     }
 
     return (
         <>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
-                <Header handleDrawerOpenClose={handleDrawerOpenClose}/>
+                <Header handleDrawerOpenClose={handleDrawerOpenClose} SerchHeader={SerchHeader} AutoRefreshNote={props.AutoRefreshNote} />
                 <Drawer variant="permanent" open={open}>
                     <DrawerHeader>
                     </DrawerHeader>
                     <Divider />
                     <List>
-                        <ListItem disablePadding sx={{ display: 'block' }}  onClick={() => SelectNavBarText("Notes")}>
+                        <ListItem disablePadding sx={{ display: 'block' }} onClick={() => SelectNavBarText("Notes")}>
                             <ListItemButton>
                                 <ListItemIcon>
                                     <LightbulbOutlinedIcon />
@@ -138,4 +142,4 @@ function NavigationBar(props) {
     );
 }
 
-export default connect() (NavigationBar) 
+export default connect()(NavigationBar) 
