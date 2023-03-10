@@ -46,7 +46,7 @@
     gap: 15px;
 }
 .InputName{
-    width: 160px;
+    width: 35%;
     height: 30px;
 }
 
@@ -55,10 +55,12 @@
     display: flex;
     flex-direction: column;
 }
+
 .InputGmail{
-    width: 338px;
+    width: 73%;
     height: 30px;
 }
+
 .EmailBelowText{
     padding-top: 28px;
     padding-left: 7px;
@@ -73,7 +75,7 @@
     gap: 15px;
 }
 .InputPassword{
-    width: 160px;
+    width: 35%;
     height: 32px;
 }
 
@@ -102,7 +104,7 @@
     justify-content: baseline;
     align-items: baseline;
     margin-top: 36px;
-    gap: 160px;
+    gap: 36%;
 }
 .LoginLink{
     color: #2d78da;
@@ -139,3 +141,48 @@
     height:244px;
     width:244px;
 }  
+
+@media screen and (min-width:320px) and (max-width:800px) {
+
+    .NewUserFormBody{
+        height: 100%;
+    }
+
+    .ImageConatiner{
+        display: none;
+    }
+
+    .InputGmail{
+        width: 95%;
+        height: 30px;
+    }
+
+    .PasswordContainer{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content:flex-start;
+        gap: 15px;
+    }
+
+    .InputPassword{
+        width: 95%;
+        height: 32px;
+    }
+
+    .NameContainer{
+        margin-top: 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content:flex-start;
+        gap: 15px;
+    }
+    .InputName{
+        width: 95%;
+        height: 30px;
+    }
+
+    .CreateAccount{
+        gap: 20%;
+    }
+}
